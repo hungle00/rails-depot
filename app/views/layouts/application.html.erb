@@ -16,9 +16,17 @@
     </header>
     <section class="content">
       <nav class="side_nav">
+        <div id="side">
+          <div id="cart">
+            <% if @cart %>
+              <%= render @cart %>
+            <% end %>
+          </div>
+        </div>
+
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/questions">Questions</a></li>
+          <li><a href="/products">Products</a></li>
           <li><a href="/news">News</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
