@@ -17,11 +17,11 @@
     <section class="content">
       <nav class="side_nav">
         <div id="side">
-          <div id="cart">
-            <% if @cart %>
+          <% if @cart %>
+            <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
               <%= render @cart %>
             <% end %>
-          </div>
+          <% end %>
         </div>
 
         <ul>
