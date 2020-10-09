@@ -27,9 +27,15 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/products">Products</a></li>
-          <li><a href="/news">News</a></li>
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/login">Login</a></li>
         </ul>
+        <% if session[:user_id] %>
+          <ul>
+            <li><%= link_to 'Orders', orders_path %></li>
+            <li><%= link_to 'Users', users_path %></li>
+          </ul>
+          <%= button_to 'Logout', logout_path, method: :delete %>
+        <% end %>
       </nav>
 			<main class='<%= controller.controller_name %>'>
         <%= yield %>
