@@ -9,7 +9,7 @@
     <% @products.each do |product| %>
       <% cache product do %>
         <li>
-          <%= image_tag(product.image_url) %>
+          <%= image_tag(product.image_url, class: 'list_image')%>
           <h2><%= product.title %></h2>
           <p>
             <%= sanitize(product.description) %>

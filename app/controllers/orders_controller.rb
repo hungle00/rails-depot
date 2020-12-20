@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
+
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_not_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -29,6 +30,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
+    @order.email = current_user.email
+    @order.name = current_user.username
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
@@ -76,7 +79,7 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:address, :pay_type)
     end
 
     def ensure_cart_not_empty

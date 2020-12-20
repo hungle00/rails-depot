@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart # This links to the controller concern file we made current_cart.rb
+  skip_before_action :authenticate_user!
   before_action :set_cart, only: [:create]  #uses the current_cart.rb for set_cart
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
