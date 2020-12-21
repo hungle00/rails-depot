@@ -27,19 +27,16 @@
         <ul>
           <li><a href="/">Home</a></li>
           <% if current_user.nil? %>
-            <%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>
+            <!--<%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %>-->
+            <%= button_to 'Signin', new_user_session_path %>
           <% else %>
-            <li><a href="/products">Products</a></li>
-            <%= link_to destroy_user_session_path, class: "nav-link", method: :delete do %>Log out<% end %>
+            <li><%= link_to 'Products', products_path %></li>
+            <% if can? :manage, User %>
+              <li><%= link_to 'Orders', orders_path %></li>
+            <% end %>
+            <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
           <% end %>
         </ul>
-        <!--<% if session[:user_id] %>
-          <ul>
-            <li><%= link_to 'Orders', orders_path %></li>
-            <li><%= link_to 'Users', users_path %></li>
-          </ul>
-          <%= button_to 'Logout', logout_path, method: :delete %> 
-        <% end %> -->
       </nav>
 			<main class='<%= controller.controller_name %>'>
         <%= yield %>
