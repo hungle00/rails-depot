@@ -7,9 +7,9 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
-#gem 'pg'
+gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+#gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'geocoder'
 gem 'cancancan'
+gem 'http'
+gem 'will_paginate', '~> 3.1.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

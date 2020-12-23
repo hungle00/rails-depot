@@ -7,6 +7,7 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails6 for more book information.
 #---
 # encoding: utf-8
+=begin
 Product.delete_all
 Product.create!(title: 'Docker for Rails Developers',
   description:
@@ -56,3 +57,24 @@ Product.create!(title: 'Programming Crystal',
       </p>},
   image_url: 'crystal.jpg',
   price: 40.00)
+
+=end
+#require 'http'
+
+url = 'https://fakestoreapi.com/products'
+response = HTTP.get(url)
+if response.status.success?
+  products = response.parse
+else
+  puts 'Unable to fetch products'
+end
+
+
+products.map do |product|
+  Product.create!(
+    title: product["title"],
+    description: product["description"],
+    image_url: product["image"],
+    price: product["price"]
+  )
+end

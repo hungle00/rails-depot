@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    #@products = Product.all
+    @products = Product.paginate(page: params[:page], per_page: 15)
   end
 
   # GET /products/1
@@ -46,7 +47,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
 
-        @products = Product.all
+        @@products = Product.all
         ActionCable.server.broadcast 'products',
           html: render_to_string('store/index', layout: false)
       else
