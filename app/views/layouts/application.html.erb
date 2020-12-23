@@ -32,6 +32,7 @@
           <% else %>
             <li><%= link_to 'Products', products_path %></li>
             <% if can? :manage, User %>
+              <li><%= link_to 'Admin', admin_path %></li>
               <li><%= link_to 'Orders', orders_path %></li>
             <% end %>
             <%= button_to 'Logout', destroy_user_session_path, method: :delete %>

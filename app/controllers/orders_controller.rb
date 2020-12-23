@@ -30,8 +30,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-    @order.email = current_user.email
-    @order.name = current_user.username
+    @order.user_id = current_user.id
+    #@order.name = current_user.username
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
