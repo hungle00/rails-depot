@@ -1,9 +1,9 @@
-<% if line_item == @current_item %>
-<tr id="current_item">
-<% else %>
-<tr>
-<% end %>
-  <td><%= line_item.quantity %>&times;</td>
-  <td><%= line_item.product.title %></td>
-  <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
-</tr>
+<h3>Pragmatic Order Shipped</h3>
+Dear <%= @order.user.username %><br>
+Thank you for your recent order from The Pragmatic Store.
+You ordered the following items:
+We'll send you a separate e-mail when your order ships.
+<table>
+  <tr><th colspan="2">Qty</th><th>Description</th></tr>
+  <%= render @order.line_items %>
+</table>
