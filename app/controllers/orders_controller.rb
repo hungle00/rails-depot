@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        #OrderMailer.received(@order).deliver_later
+        OrderMailer.received(@order).deliver_later
         #format.html { redirect_to store_index_url, notice: 'Order was successfully created.' }
         format.html { render :show, status: :created, notice: 'Order was successfully created.'}
         format.json { render :show, status: :created, location: @order }
