@@ -61,6 +61,7 @@ Product.create!(title: 'Programming Crystal',
 =end
 #require 'http'
 
+=begin
 url = 'https://fakestoreapi.com/products'
 response = HTTP.get(url)
 if response.status.success?
@@ -78,3 +79,14 @@ products.map do |product|
     price: product["price"]
   )
 end
+=end
+#User.create!({:email => "admin@gmail.com", :username => "admin", :password => "admin00", :password_confirmation => "admin00", :seller => true })
+#User.create!({:email => "steve@email.com", :username => "steve", :password => "0123456", :password_confirmation => "0123456" })
+
+
+Comment.create!([
+  {product_id: 1, user_id: 1, rating: 3, body: "dated graphics.  Overpriced.  However, the games are awesome."},
+  {product_id: 3, user_id: 1, rating: 4, body: "MARIO!  'nuff Said"},
+  {product_id: 2, user_id: 2, rating: 5, body: "Excellent value for the money."},
+  {product_id: 2, user_id: 1, rating: 5, body: "Love it!"}
+])
