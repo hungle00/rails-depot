@@ -36,16 +36,13 @@
     </div>
     <%# NOTE COMMENT STEP 3: Wrap the comments in `<div id="comments">` so that you can select the wrapper when using javascript in `app/views/comments/create.js.erb`. %>
     <div id="comments" class="card-body">
-      <ul>
-        <% @product.comments.each do |comment| %>
-          <li>
-            <p>Comment: <%= comment.body %></p>
-            <p>Rating: <%= comment.rating %></p>
-          </li>
-        <% end %>
-      </ul>
+      <%= render @product.comments %>
     </div>
 </div>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<br>
+
+<% if can? :manage, User %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+<% end %>

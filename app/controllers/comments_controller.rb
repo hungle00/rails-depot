@@ -6,14 +6,14 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = @product.comments.create(comment_params)
-
+    @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.html { redirect_to @product, notice: 'Comment was successfully created.' }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.html { render action: "new" }
+        format.js
       end
     end
   end
@@ -23,11 +23,9 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
+        format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -36,16 +34,13 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @comment.product, notice: "Comment successfully deleted."
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.find(params[:product_id])
     end
 
     def set_comment
