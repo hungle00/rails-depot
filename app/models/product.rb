@@ -12,6 +12,9 @@ class Product < ApplicationRecord
   }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validates :title, length: { minimum:10 }
+
+  scope :sort_by_price, -> { order(price: :asc) }
+  scope :sort_by_title, -> { order(title: :asc) }
   
   private
     #ensure that there are no line items referencing this product

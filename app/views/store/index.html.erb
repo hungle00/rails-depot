@@ -4,6 +4,11 @@
 
 <h1>Your Pragmatic Catalog</h1>
 
+<%= form_with(url: store_index_path(@products), method: :get, local: true) do |f| %>
+  <%= f.select :order, ["Sort by price", "Sort by title"] %>
+  <%= f.submit "Sort" %>
+<% end %>
+
 <ul class="catalog">
   <% cache @products do %>
     <% @products.each do |product| %>

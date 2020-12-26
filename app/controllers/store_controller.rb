@@ -5,7 +5,15 @@ class StoreController < ApplicationController
   before_action :set_cart
   
   def index
-    @products = Product.order(:title).paginate(page: params[:page], per_page: 15)
+    @products = Product.paginate(page: params[:page], per_page: 15)
+    
+    if params[:order] && params[:order] == "Sort by price"
+      @products = @products.sort_by_price
+    elsif params[:order] && params[:order] == "Sort by title"
+      @products = @products.sort_by_title
+    else
+      @prodcuts
+    end
   end
 
 end
