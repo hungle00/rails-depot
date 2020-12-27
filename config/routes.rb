@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'admin' => 'admin#index'
   
   devise_for :user
   resources :users

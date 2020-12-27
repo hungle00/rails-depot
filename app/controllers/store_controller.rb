@@ -12,7 +12,7 @@ class StoreController < ApplicationController
     elsif params[:order] && params[:order] == "Sort by title"
       @products = @products.sort_by_title
     else
-      @prodcuts
+      @products = @products.discount
     end
   end
 

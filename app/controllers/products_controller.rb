@@ -48,9 +48,9 @@ class ProductsController < ApplicationController
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
 
-        @@products = Product.all
-        ActionCable.server.broadcast 'products',
-          html: render_to_string('store/index', layout: false)
+        #@@products = Product.all
+        #ActionCable.server.broadcast 'products',
+        #  html: render_to_string('store/index', layout: false)
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -76,6 +76,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :description, :image_url, :price)
+      params.require(:product).permit(:title, :description, :image_url, :price, :discount_percentage)
     end
 end

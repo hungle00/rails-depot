@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_011242) do
+ActiveRecord::Schema.define(version: 2020_12_27_152420) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_011242) do
     t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "discount_percentage", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,7 +74,6 @@ ActiveRecord::Schema.define(version: 2020_12_24_011242) do
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.boolean "seller", default: false
-    t.boolean "buyer", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

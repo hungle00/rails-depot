@@ -5,7 +5,7 @@
 <h1>Your Pragmatic Catalog</h1>
 
 <%= form_with(url: store_index_path(@products), method: :get, local: true) do |f| %>
-  <%= f.select :order, ["Sort by price", "Sort by title"] %>
+  <%= f.select :order, ["Sort by price", "Sort by title", "Sort by discount"] %>
   <%= f.submit "Sort" %>
 <% end %>
 
@@ -22,6 +22,10 @@
           <div class="price">
             <span class="price"><%= number_to_currency(product.price) %></span>
             <%= button_to "Add To Cart", line_items_path(product_id: product), remote: true %>
+            <% if product.discount_percentage > 0 %>
+              <br>
+              <span class="discount_price">Discount <%= number_to_currency(product.price * (100 - product.discount_percentage) / 100) %></span>
+            <% end %>
           </div>
         </li>
       <% end %>

@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    @total_orders = Order.count
   end
 
   # GET /orders/1

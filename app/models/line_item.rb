@@ -4,6 +4,6 @@ class LineItem < ApplicationRecord
   belongs_to :cart
 
   def total_price
-    product.price * quantity
+    product.price * (100 - product.discount_percentage) / 100 * quantity
   end
 end
