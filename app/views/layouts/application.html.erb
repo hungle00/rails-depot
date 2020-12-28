@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pragprog Books Online Store</title>
+    <title>Online Store</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all',
@@ -36,7 +36,7 @@
               <li><%= link_to 'Users', users_path %></li>
               <li><%= link_to 'Orders', orders_path %></li>
             <% else %>
-              <li><%= link_to 'Change password', edit_user_password_path %></li>
+              <li><%= link_to 'Edit account', edit_user_registration_path %></li>
             <% end %>
             <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
           <% end %>

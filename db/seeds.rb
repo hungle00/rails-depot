@@ -9,6 +9,7 @@
 # encoding: utf-8
 
 #Product.delete_all
+=begin
 Product.create!(title: 'Docker for Rails Developers',
   description:
     %{<p>
@@ -57,6 +58,12 @@ Product.create!(title: 'Programming Crystal',
       </p>},
   image_url: 'crystal.jpg',
   price: 40.00)
+=end
+products = JSON.parse(File.read('data.json'))
+
+products.each do |product|
+  Product.create!(product.to_h)
+end
 
 =begin
 url = 'https://fakestoreapi.com/products'
@@ -66,8 +73,9 @@ if response.status.success?
 else
   puts 'Unable to fetch products'
 end
+=end
 
-
+=begin
 products.map do |product|
   Product.create!(
     title: product["title"],

@@ -1,7 +1,4 @@
-## Install ruby, rails, postgresql
+## Rails online store
 
-## Edit database.yml file with your username and password 
-## bundle install
-
-## rails db:create
-## rails db:migrate
+### Database schema
+![Database schema(Postgresql)](/public/schema.png)

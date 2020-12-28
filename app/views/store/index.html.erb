@@ -2,7 +2,7 @@
   <aside id="notice"><%= notice %></aside>
 <% end %>
 
-<h1>Your Pragmatic Catalog</h1>
+<h1>Online Store Catalog</h1>
 
 <%= form_with(url: store_index_path(@products), method: :get, local: true) do |f| %>
   <%= f.select :order, ["Sort by price", "Sort by title", "Sort by discount"] %>

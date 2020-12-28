@@ -8,7 +8,7 @@
 <%# NOTE COMMENT STEP 2: Conditionally load a non-AJAX version of the form when on `comments#edit`. %>
 <% else  %>
     <%= form_with model:[@product, @comment], local: true do |f| %>
-        <%= render "shared/validation-messages", object: f.object %>
+        <%= render "comments/validation-messages", object: f.object %>
         <%= render 'comments/form-fields', f: f %>
     <% end  %>
 <% end  %>

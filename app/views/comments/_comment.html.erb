@@ -4,7 +4,6 @@
     <small class="d-inline-block mb-3 text-secondary border-bottom">Posted <%= time_ago_in_words(comment.created_at) %> ago.</small>
     <% if can? :manage, User %>
       <div class="btn-group">
-        <%= link_to "Edit Comment", edit_product_comment_path(comment.product, comment), class: "btn btn-sm btn-outline-primary" %>
         <%= link_to "Delete Comment", product_comment_path(comment.product, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
       </div>
     <% end %>
