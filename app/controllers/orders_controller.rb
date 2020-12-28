@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @distance = @order.distance_to([21.0294498, 105.8544441]).round(2)
   end
 
   # GET /orders/new

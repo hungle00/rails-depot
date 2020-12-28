@@ -25,6 +25,13 @@
   <%= "#{@product.discount_percentage} %" %>
 </p>
 
+<% if @product.comments.count > 0 %>
+  <p>
+    <strong>Average rating:</strong>
+    <%= @product.avg_rating %>
+  </p>
+<% end %>
+
 <div class="card mb-3">
     <div class="card-header">
         <h4 class="mb-0">Add A Comment:</h4>

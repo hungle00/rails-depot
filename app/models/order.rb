@@ -20,4 +20,18 @@ class Order < ApplicationRecord
       line_items << item
     end
   end
+
+  def distance
+  end
+
+  def self.to_csv
+    attributes = %w{address pay_type user_id created_at updated_at}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |order|
+        csv << attributes.map{ |attr| order.send(attr) }
+      end
+    end
+  end
 end

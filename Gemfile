@@ -27,6 +27,7 @@ gem 'geocoder'
 gem 'cancancan'
 gem 'http'
 gem 'will_paginate', '~> 3.1.0'
+gem 'csv'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

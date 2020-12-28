@@ -12,7 +12,6 @@ class Ability
       can :read, Product
       if user.seller?
         can :manage, :all
-        #can :access, :admin
       end
     end
     #

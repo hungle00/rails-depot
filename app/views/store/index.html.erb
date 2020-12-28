@@ -22,6 +22,7 @@
           <div class="price">
             <span class="price"><%= number_to_currency(product.price) %></span>
             <%= button_to "Add To Cart", line_items_path(product_id: product), remote: true %>
+            <span class="show"><%= link_to 'Show more', product %></span>
             <% if product.discount_percentage > 0 %>
               <br>
               <span class="discount_price">Discount <%= number_to_currency(product.price * (100 - product.discount_percentage) / 100) %></span>
