@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+/*import consumer from "./consumer"
 
 consumer.subscriptions.create("ProductsChannel", {
   connected() {
@@ -16,4 +16,4 @@ consumer.subscriptions.create("ProductsChannel", {
     document.querySelector(".store").innerHTML = data.html
     //document.querySelector("#cart").innerHTML = data.html
   }
-});
+});*/

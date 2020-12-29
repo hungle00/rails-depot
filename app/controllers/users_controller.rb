@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show]
+  load_and_authorize_resource
 
   # GET /users
   # GET /users.json
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url,
-                notice: "User #{@user.name} was successfully created." }
+                notice: "User #{@user.username} was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -43,9 +44,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      edit_params =  params.require(:user).permit(:seller)
+      if @user.update(edit_params)
         format.html { redirect_to users_url,
-          notice: "User #{@user.name} was successfully updated." }
+          notice: "User #{@user.username} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -72,6 +74,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :seller)
     end
 end

@@ -73,9 +73,7 @@ if response.status.success?
 else
   puts 'Unable to fetch products'
 end
-=end
 
-=begin
 products.map do |product|
   Product.create!(
     title: product["title"],

@@ -21,12 +21,10 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @comment.update(comment_params)
+      redirect_to @comment.post, notice: 'Comment was successfully updated.'
+    else
+      render :edit
     end
   end
 
