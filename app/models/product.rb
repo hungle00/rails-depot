@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   has_many :line_items, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  #before_destroy :ensure_not_referenced_by_a_line_item
+  before_destroy :ensure_not_referenced_by_a_line_item
 
   validates :title, :description, :image_url, presence: true
   validates :title, uniqueness: true
@@ -15,8 +15,7 @@ class Product < ApplicationRecord
   validates :title, length: { minimum:10 }
 
   scope :sort_by_price, -> { order(price: :asc) }
-  scope :sort_by_title, -> { order(title: :asc) }
-  scope :discount, -> { order(discount_percentage: :desc) }
+  scope :sort_by_discount, -> { order(discount_percentage: :desc) }
   
 
   def avg_rating

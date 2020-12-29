@@ -6,5 +6,8 @@ We'll send you a separate e-mail when your order ships.
 <table>
   <tr><th colspan="2">Qty</th><th>Description</th></tr>
   <%= render @order.line_items %>
-  <%= @order.distance %>
+  <p>You are in</p><%= @order.address %>
+  <p>Distance from you to our repository</p><%= "#{@order.distance_to([21.0294498, 105.8544441]).round(2)} km" %>
+  
+
 </table>

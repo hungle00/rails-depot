@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_not_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
 
   # GET /orders
   # GET /orders.json
@@ -34,14 +33,13 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     @order.user_id = current_user.id
-    #@order.name = current_user.username
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderMailer.received(@order).deliver_later
-        #format.html { redirect_to store_index_url, notice: 'Order was successfully created.' }
-        format.html { render :show, status: :created, notice: 'Order was successfully created.'}
+        format.html { redirect_to store_index_url, notice: 'Order was successfully created.' }
+        #format.html { render :show, status: :created, notice: 'Order was successfully created.'}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
