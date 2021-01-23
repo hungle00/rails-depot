@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Orders</h1>
+We have <%= pluralize(@total_orders, "order") %>.
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Address</th>
       <th>Email</th>
+      <th>Address</th>
       <th>Pay type</th>
       <th colspan="3"></th>
     </tr>
@@ -21,13 +22,10 @@
         <td><%= order.address %></td>
         <td><%= order.pay_type %></td>
         <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+<%= link_to 'Export to csv', orders_export_csv_path(format: :csv) %>

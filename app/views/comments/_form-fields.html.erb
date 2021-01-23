@@ -1,0 +1,13 @@
+<div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label :rating %>
+  <%= f.select :rating, [1, 2, 3, 4, 5], class: "form-control" %>
+</div>
+
+<div class="btn-group">    
+    <%= f.submit class: "btn btn-success" %>
+</div>

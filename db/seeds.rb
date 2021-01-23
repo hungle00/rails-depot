@@ -7,8 +7,9 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails6 for more book information.
 #---
 # encoding: utf-8
+
+#Product.delete_all
 =begin
-Product.delete_all
 Product.create!(title: 'Docker for Rails Developers',
   description:
     %{<p>
@@ -57,10 +58,14 @@ Product.create!(title: 'Programming Crystal',
       </p>},
   image_url: 'crystal.jpg',
   price: 40.00)
-
 =end
-#require 'http'
+products = JSON.parse(File.read('data.json'))
 
+products.each do |product|
+  Product.create!(product.to_h)
+end
+
+=begin
 url = 'https://fakestoreapi.com/products'
 response = HTTP.get(url)
 if response.status.success?
@@ -68,7 +73,6 @@ if response.status.success?
 else
   puts 'Unable to fetch products'
 end
-
 
 products.map do |product|
   Product.create!(
@@ -78,3 +82,14 @@ products.map do |product|
     price: product["price"]
   )
 end
+=end
+#User.create!({:email => "admin@gmail.com", :username => "admin", :password => "admin00", :password_confirmation => "admin00", :seller => true })
+#User.create!({:email => "steve@email.com", :username => "steve", :password => "0123456", :password_confirmation => "0123456" })
+
+
+# Comment.create!([
+#   {product_id: 1, user_id: 1, rating: 3, body: "dated graphics.  Overpriced.  However, the games are awesome."},
+#   {product_id: 3, user_id: 1, rating: 4, body: "MARIO!  'nuff Said"},
+#   {product_id: 2, user_id: 2, rating: 5, body: "Excellent value for the money."},
+#   {product_id: 2, user_id: 1, rating: 5, body: "Love it!"}
+# ])

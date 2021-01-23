@@ -1,9 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @user.username %>
+  </li>
+  <li>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </li>
+  <li>
+    <strong>Created at:</strong>
+    <%= @user.created_at %>
+  </li>
+  <li>
+    <strong>Updated at:</strong>
+    <%= @user.updated_at %>
+  </li>
+</ul>
+<%= render 'form_update', user: @user %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

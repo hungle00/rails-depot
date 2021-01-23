@@ -1,4 +1,4 @@
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_with(model: user, local: true) do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,24 +12,37 @@
   <% end %>
     
   <fieldset>
-  <legend>Enter User Details</legend>
+    <legend>Enter User Details</legend>
     <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name, size: 40 %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
     <div class="field">
-      <%= form.label :password %>
-      <%= form.password_field :password, size: 40 %>
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
 
     <div class="field">
-      <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation, size: 40 %>
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true%>
+    </div>
+
+    <div class="field">
+      <%= f.label :admin_User? %>
+      <%= f.check_box :seller %>
     </div>
 
     <div class="actions">
-      <%= form.submit %>
+      <%= f.submit %>
     </div>
   <fieldset>
 <% end %>

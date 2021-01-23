@@ -9,11 +9,13 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    @total_orders = Order.count
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @distance = @order.distance_to([21.0294498, 105.8544441]).round(2)
   end
 
   # GET /orders/new
@@ -31,14 +33,13 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
     @order.user_id = current_user.id
-    #@order.name = current_user.username
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         OrderMailer.received(@order).deliver_later
-        #format.html { redirect_to store_index_url, notice: 'Order was successfully created.' }
-        format.html { render :show, status: :created, notice: 'Order was successfully created.'}
+        format.html { redirect_to store_index_url, notice: 'Order was successfully created.' }
+        #format.html { render :show, status: :created, notice: 'Order was successfully created.'}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
