@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include GenerateCsv
+
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
@@ -15,14 +17,14 @@ class User < ApplicationRecord
     comments.count
   end
 
-  def self.to_csv
-    attributes = %w{email username count_order count_comment}
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
+  # def self.to_csv
+  #   attributes = %w{email username count_order count_comment}
+  #   CSV.generate(headers: true) do |csv|
+  #     csv << attributes
 
-      all.each do |user|
-        csv << attributes.map{ |attr| user.send(attr) }
-      end
-    end
-  end
+  #     all.each do |user|
+  #       csv << attributes.map{ |attr| user.send(attr) }
+  #     end
+  #   end
+  # end
 end

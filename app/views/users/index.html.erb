@@ -33,4 +33,4 @@ We have <%= pluralize(@total_users, "user") %>.
 <br>
 
 <%= link_to 'New User', new_user_path %>
-<%= link_to 'Export to csv', users_export_csv_path(format: :csv) %>
+<%= link_to 'Export to csv', export_users_path(format: :csv) %>

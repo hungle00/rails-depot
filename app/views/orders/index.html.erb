@@ -28,4 +28,4 @@ We have <%= pluralize(@total_orders, "order") %>.
   </tbody>
 </table>
 
-<%= link_to 'Export to csv', orders_export_csv_path(format: :csv) %>
+<%= link_to 'Export to csv', export_orders_path(format: :csv) %>

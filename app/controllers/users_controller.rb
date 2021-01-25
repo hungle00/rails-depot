@@ -66,6 +66,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def export
+    @users = User.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

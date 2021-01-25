@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include GenerateCsv
+  
   belongs_to :user
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -22,16 +24,16 @@ class Order < ApplicationRecord
     end
   end
 
-  def self.to_csv
-    attributes = %w{address pay_type user_id created_at updated_at}
-    CSV.generate(headers: true) do |csv|
-      csv << attributes
+  # def self.to_csv
+  #   attributes = %w{address pay_type user_id created_at updated_at}
+  #   CSV.generate(headers: true) do |csv|
+  #     csv << attributes
 
-      all.each do |order|
-        csv << attributes.map{ |attr| order.send(attr) }
-      end
-    end
-  end
+  #     all.each do |order|
+  #       csv << attributes.map{ |attr| order.send(attr) }
+  #     end
+  #   end
+  # end
 
   private 
 
