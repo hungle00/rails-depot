@@ -59,11 +59,11 @@ Product.create!(title: 'Programming Crystal',
   image_url: 'crystal.jpg',
   price: 40.00)
 =end
-products = JSON.parse(File.read('data.json'))
+#products = JSON.parse(File.read('data.json'))
 
-products.each do |product|
-  Product.create!(product.to_h)
-end
+#products.each do |product|
+#  Product.create!(product.to_h)
+#end
 
 =begin
 url = 'https://fakestoreapi.com/products'
@@ -83,8 +83,8 @@ products.map do |product|
   )
 end
 =end
-#User.create!({:email => "admin@gmail.com", :username => "admin", :password => "admin00", :password_confirmation => "admin00", :seller => true })
-#User.create!({:email => "steve@email.com", :username => "steve", :password => "0123456", :password_confirmation => "0123456" })
+User.create!({:email => "admin@gmail.com", :username => "admin", :password => "admin00", :password_confirmation => "admin00", :seller => true })
+User.create!({:email => "steve@email.com", :username => "steve", :password => "0123456", :password_confirmation => "0123456" })
 
 
 # Comment.create!([
