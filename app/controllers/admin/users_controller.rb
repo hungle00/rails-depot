@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show]
   load_and_authorize_resource
 
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       edit_params =  params.require(:user).permit(:seller)
       if @user.update(edit_params)
-        format.html { redirect_to users_url,
+        format.html { redirect_to admin_users_url,
           notice: "User #{@user.username} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else

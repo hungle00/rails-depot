@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-  #mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  #get 'users_export_csv' => 'export_csv#users'
-  #get 'orders_export_csv' => 'export_csv#orders'
-
   devise_for :user
-  
-  resources :users do
-    get 'export', on: :collection
+
+  namespace :admin do
+    root "orders#index"
+    get 'orders/export'
+    resources :users do
+      get 'export', on: :collection
+    end
   end
-  resources :orders do
-    get 'export', on: :collection
-  end
+
+  resources :orders, except: [:index]
   resources :line_items
   resources :carts
   root 'store#index', as: 'store_index'
