@@ -5,8 +5,8 @@
 <h1>Online Store Catalog</h1>
 
 <%= form_with(url: store_index_path(@products), method: :get, local: true) do |f| %>
-  <%= f.select :order, ["Sort by price", "Sort by discount"] %>
-  <%= f.submit "Sort" %>
+  <%= f.select :order, ["Sort by price", "Sort by discount"], class: "form-select" %>
+  <%= f.submit "Sort", class: "btn btn-sm btn-outline-success" %>
 <% end %>
 
 <ul class="catalog">
@@ -21,7 +21,7 @@
           </p>
           <div class="price">
             <span class="price"><%= number_to_currency(product.price) %></span>
-            <%= button_to "Add To Cart", line_items_path(product_id: product) %>
+            <%= button_to "Add To Cart", line_items_path(product_id: product), class: "btn btn-success" %>
             <span class="show"><%= link_to 'Show more', product %></span>
             <% if product.discount_percentage > 0 %>
               <br>

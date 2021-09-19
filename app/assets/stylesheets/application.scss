@@ -20,15 +20,20 @@ body {
   padding: 0;
 }
 // Top bar across site
-header.main {
+nav.main {
   text-align: center; // center on mobile
   @media (min-width: 30em) {
     text-align: left; // left align on desktop
   }
   background: #282;
   margin: 0;
-  h1 {
-    display: none;
+  a {
+    color: #bfb;
+    text-decoration: none;
+  }
+  a:hover {
+    background: none;
+    color: white;
   }
 }
 .content {

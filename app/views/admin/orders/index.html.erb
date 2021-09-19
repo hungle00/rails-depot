@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+  <p id="notice"><%= notice %></p>
+<% end %>
 
 <h1>Orders</h1>
 We have <%= pluralize(@total_orders, "order") %>.
