@@ -85,6 +85,8 @@ function handleConfirm(element) {
         Rails.stopEverything(element);
     }
 }
+﻿
+window.onload = setTimeout(function () {document.getElementById('notice').style.display='none'}, 3000)
 
 Rails.delegate(document, 'a[data-confirm-swal]', 'click', handleConfirm);
 

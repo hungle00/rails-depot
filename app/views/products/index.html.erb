@@ -2,16 +2,12 @@
   <aside id="notice"><%= notice %></aside>
 <% end %>
 
-<h1>Products</h1>
+<h2>All Products</h2>
+<%= link_to 'New Product', new_product_path, class: "btn btn-outline-success" %>
+
+<hr>
 
 <table>
-  <tfoot>
-    <tr>
-      <td colspan="3">
-        <%= link_to 'New Product', new_product_path %>
-      </td>
-    </tr>
-  </tfoot>
   <tbody>
     <% @products.each do |product| %>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">

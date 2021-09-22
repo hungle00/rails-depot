@@ -4,12 +4,12 @@
 
 .store {
   max-width: 80em;
-  ul.catalog {
+  div.catalog {
     border-top: solid 0.250em;
     list-style: none;
     padding: 0;
     margin: 0;
-    li {
+    div.col-6 {
       padding: 1em;
       margin: 0;
       border-bottom: solid thin #ddd;
@@ -31,7 +31,7 @@
       }
 //
       .price {
-        font-size: 1.414em;
+        font-size: 1.2em;
       }
       .show {
         text-align: right;
@@ -47,7 +47,7 @@
         border-radius: 0.354em;
         border: solid thin #141;
         color: white;
-        font-size: 1em;
+        font-size: 0.8em;
         padding: 0.354em 1em;
       }
       input[type="submit"]:hover {

@@ -9,29 +9,31 @@
   <%= f.submit "Sort", class: "btn btn-sm btn-outline-success" %>
 <% end %>
 
-<ul class="catalog">
-  <% cache @products do %>
-    <% @products.each do |product| %>
-      <% cache product do %>
-        <li>
-          <%= image_tag(product.image_url, class: 'list_image')%>
-          <h2><%= product.title %></h2>
-          <p>
-            <%= sanitize(product.description) %>
-          </p>
-          <div class="price">
-            <span class="price"><%= number_to_currency(product.price) %></span>
-            <%= button_to "Add To Cart", line_items_path(product_id: product), class: "btn btn-success" %>
-            <span class="show"><%= link_to 'Show more', product %></span>
-            <% if product.discount_percentage > 0 %>
-              <br>
-              <span class="discount_price">Discount <%= number_to_currency(product.price * (100 - product.discount_percentage) / 100) %></span>
-            <% end %>
+<div class="catalog container">
+  <div class="row">
+    <% cache @products do %>
+      <% @products.each do |product| %>
+        <% cache product do %>
+          <div class="col-6">
+            <%= image_tag(product.image_url, class: 'list_image')%>
+            <h3><%= link_to product.title, product %></h3>
+            <p>
+              <%= truncate(strip_tags(product.description),
+                         length: 100) %>
+            </p>
+            <div class="price">
+              <span class="price"><%= number_to_currency(product.price) %></span>
+              <%= button_to "Add To Cart", line_items_path(product_id: product), class: "btn btn-success" %>
+              <% if product.discount_percentage > 0 %>
+                <br>
+                <span class="discount_price">Discount <%= number_to_currency(product.price * (100 - product.discount_percentage) / 100) %></span>
+              <% end %>
+            </div>
           </div>
-        </li>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </div>
+</div>
 
 <p><%= will_paginate @products %></p>

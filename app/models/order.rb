@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   after_validation :geocode, if: :address_changed?
   
   has_many :line_items, dependent: :destroy
+
+  delegate :username, :email, :to => :user, :allow_nil => true
   
   enum pay_type: {
     "Check"         => 0,
@@ -24,6 +26,21 @@ class Order < ApplicationRecord
     end
   end
 
+  def total_products
+    products = {}
+    line_items.includes(:product).each do |line_item|
+      line_item.product_title = line_item.quantity
+    end
+    products
+  end
+
+  def total_price
+    total_price = 0
+    line_items.each do |line_items|
+      total_price += line_items.total_price
+    end
+    total_price
+  end
   # def self.to_csv
   #   attributes = %w{address pay_type user_id created_at updated_at}
   #   CSV.generate(headers: true) do |csv|

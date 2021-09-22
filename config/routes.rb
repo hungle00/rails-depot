@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, except: [:index]
+  resources :orders
   resources :line_items
   resources :carts
   root 'store#index', as: 'store_index'

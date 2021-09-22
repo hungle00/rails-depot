@@ -25,4 +25,3 @@
 
 
 ### Database schema
-![Database schema(Postgresql)](/public/schema.png)

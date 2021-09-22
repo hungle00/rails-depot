@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Username:</strong>
   <%= @order.user.username %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @order.user.email %>
 </p>
 
 <p>
@@ -16,7 +11,7 @@
 </p>
 
 <p>
-  <strong>Distance from you to our repository: </strong>
+  <strong>Distance from you to our depot: </strong>
   <%= "#{@distance} km"  %>
 </p>
 
@@ -24,6 +19,26 @@
   <strong>Pay type:</strong>
   <%= @order.pay_type %>
 </p>
+
+<p>
+  <strong>Price:</strong>
+  <%= number_to_currency(@order.total_price) %>
+</p>
+
+<h4><strong>All Products:</strong></h4>
+
+<table class="table">
+  <tbody>
+    <% @line_items.each do |line_item| %>
+      <tr>
+        <td><%= link_to line_item.product_title, line_item.product %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency(line_item.total_price) %></td>
+      <tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

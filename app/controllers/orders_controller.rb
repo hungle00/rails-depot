@@ -5,17 +5,19 @@ class OrdersController < ApplicationController
   before_action :ensure_cart_not_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+  DEPOT_POSITION = [21.0294498, 105.8544441]
+
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
-    @total_orders = Order.count
+    @orders = current_user.orders.includes(:line_items)
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @distance = @order.distance_to([21.0294498, 105.8544441]).round(2)
+    @line_items = @order.line_items
+    @distance = @order.distance_to(DEPOT_POSITION).round(2)
   end
 
   # GET /orders/new

@@ -1,18 +1,13 @@
-<% if notice.present? %>
-  <p id="notice"><%= notice %></p>
-<% end %>
-
 <h1>Orders</h1>
-We have <%= pluralize(@total_orders, "order") %>.
+We have <%= pluralize(@orders.size, "order") %>.
 
 <table class="table table-success table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
+      <th>Products</th>
+      <th>Total Price</th>
       <th>Address</th>
       <th>Pay type</th>
-      <th>Price</th>
       <th>Created At</th>
       <th colspan="3"></th>
     </tr>
@@ -21,16 +16,14 @@ We have <%= pluralize(@total_orders, "order") %>.
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.username %></td>
-        <td><%= order.email %></td>
+        <td><%= order.line_items.count %></td>
+        <td><%= number_to_currency(order.total_price) %></td>
         <td><%= order.address %></td>
         <td><%= order.pay_type %></td>
-        <td><%= number_to_currency(order.total_price) %></td>
         <td><%= order.created_at.to_s(:long) %></td>
         <td><%= link_to "View", order %></td>
+        </a>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Export to csv', admin_orders_export_path(format: :csv) %>
